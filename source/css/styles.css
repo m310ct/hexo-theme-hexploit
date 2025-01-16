@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'DOSFont'; /* 自定义字体名称 */
+    src: url('../font/Perfect DOS VGA 437.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  

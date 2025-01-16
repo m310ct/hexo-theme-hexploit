@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= page.title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <%- partial('_partial/header') %>
+</head>
+<body class="bg-black text-hacker-color3 container mx-auto">
+    <!-- 文章标题 -->
+    <h1 class="text-5xl text-hacker-color1 font-bold font-dos my-6 text-center"><%= page.title %></h1>
+
+    <!-- 发布时间 -->
+    <p class="text-hacker-color3 text-center text-sm mb-4">
+        Published on <%= date(page.date,"YYYY-MM-DD") %>
+    </p>
+
+    <!-- 文章内容 -->
+    <div id="article-content" class="article-entry prose prose-invert mx-auto max-w-4xl leading-relaxed highlight">
+        <%- page.content %>
+    </div>
+
+    <!-- 返回主页链接 -->
+    <div class="text-center my-8">
+        <a href="/" class="text-hacker-color1 underline hover:text-hacker-color2">← Back to Home</a>
+    </div>
+
+    <%- partial('_partial/footer') %>
+
+</body>
+</html>

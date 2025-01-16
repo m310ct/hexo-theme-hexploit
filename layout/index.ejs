@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= config.title %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/tailwind.css">
+  <!-- <link rel="stylesheet" href="/css/search.css"> -->
+</head>
+
+<body class="bg-black">
+  <!-- 顶部导航栏 -->
+  <div class="sticky top-0 z-50">
+    <%- partial('_partial/header') %>
+  </div>
+  
+  <main class="w-screen min-h-screen container mx-auto">
+    <!-- 欢迎页面 -->
+    <div class="min-h-screen bg-black text-center flex flex-col justify-center items-center h-screen">
+        <h1 class="
+        text-hacker-color2 font-dos md:text-huge text-3xl text-wrap animate-bounce select-none bg-red-400 md:min-h-[5rem] md:leading-[5rem] 
+        bg-gradient-to-r from-hacker-color1 to-hacker-color2 bg-clip-text text-transparent md:-mt-80 -mt-40
+        "><%= config.subtitle %></h1>
+        <hr class="w-[85%] border-t-2 border-line-color border-dashed">
+        
+        <p class="text-hacker-color2 md:mt-40 mt-20 md:text-2xl text-lg text-wrap font-dos w-[70%] select-none"><%= config.description%></p>
+
+        <!-- 下拉按钮 -->
+        <svg id="down-btn" class="icon w-16 h-16 absolute top-[75%] hover:-translate-y-1 transition-all cursor-pointer" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#bbbbbb">
+          <path d="M185.884 327.55 146.3 367.133 512.021 732.779 877.7 367.133 838.117 327.55 511.997 653.676Z"></path>
+        </svg>
+    </div>
+
+    <!-- 博客文章与侧边栏 -->
+    <div class="min-h-screen flex gap-8" id="scr-target">
+      <!-- 文章部分 -->
+      <div class="w-full">
+        <% page.posts.forEach(function(post) { %>
+          <div class="post-item group border-b border-b-hacker-color3 ">
+            <a href="<%= url_for(post.path) %>" class="block py-2 px-8 group-hover:bg-hacker-hover-color space-y-4">
+              <h2 class="post-title text-hacker-color1 group-hover:text-white font-bold text-2xl">
+                <%= post.title %>
+              </h2>
+              <p class="post-meta text-hacker-color3 text-sm group-hover:text-white">
+                <%= date(post.date, 'YYYY-MM-DD') %>
+              </p>
+              <p class="post-excerpt text-hacker-color3 group-hover:text-white">
+                <%= (post.excerpt || post.content) ? strip_html(post.excerpt || post.content).slice(0, 300) : '' %>...
+              </p>
+            </a>
+          </div>
+        <% }); %>
+      </div>
+      
+
+      <!-- 侧边部分 -->
+      <%- partial('_partial/sidebar') %>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <%- partial('_partial/footer') %>
+</body>
+<script src="./js/scroll.js"></script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= theme.title %> - Archives</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <%- partial('_partial/header') %>
+</head>
+<body class="bg-black container mx-auto">
+    <h1 class="text-4xl text-hacker-color1 font-bold font-dos">Archives</h1>
+    <hr class="w-full border-t-2 border-line-color border-dashed">
+    <div class="container mx-auto flex bg-black min-h-screen">
+        <div class="w-full">
+            <% 
+            const posts = page.posts.toArray();
+
+            const postsByYear = posts.reduce((acc, post) => {
+            const year = post.date.format('YYYY'); 
+            if (!acc[year]) acc[year] = [];       
+            acc[year].push(post);                 
+            return acc;
+            }, {});
+            %>
+
+            <div class="archive-list text-lg mt-8">
+            <% Object.keys(postsByYear).sort((a, b) => b - a).forEach(year => { %>
+                <section class="mb-6">
+                <h2 class="text-2xl font-bold text-hacker-color1 mb-4"><%= year %></h2>
+                <ul class="ml-4">
+                    <% postsByYear[year].forEach(post => { %>
+                    <li class="mb-2">
+                        <span class="text-hacker-color3 "><%= date(post.date, "YYYY-MM-DD") %> >> </span>
+                        <a class="text-hacker-color1 hover:underline" href="<%- url_for(post.path) %>"><%= post.title %></a>
+                    </li>
+                    <% }) %>
+                </ul>
+                </section>
+            <% }) %>
+            </div>
+
+
+        </div>
+        <%- partial('_partial/sidebar') %>
+    </div>
+</body>
+</html>

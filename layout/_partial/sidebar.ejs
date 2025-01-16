@@ -1,0 +1,78 @@
+<% if (theme.sidebar.enable) { %>
+    <div class="w-1/3 hidden md:block space-y-4 mt-8">
+      <% theme.sidebar.widgets.forEach(widget => { %>
+        <% if (widget === "search") { %>
+          <!-- 搜索框 -->
+          <input type="text" id="search-input" placeholder="Search..." class="w-full p-2.5 text-lg mb-5 border-2 border-line-color rounded bg-black text-white placeholder-gray-400"/>
+          <div id="search-results"></div>
+        <% } %>
+  
+        <% if (widget === "notice" && theme.sidebar.notice.enable) { %>
+          <!-- 公告栏 -->
+          <div class=" text-white p-4 rounded-md border-2 border-dashed border-line-color mb-4">
+            <h3 class="font-bold text-lg text-hacker-color1">Notice</h3>
+            <p class="mt-4"><%= theme.sidebar.notice.content %></p>
+          </div>
+        <% } %>
+  
+        <% if (widget === "categories") { %>
+          <!-- 分类部分 -->
+          <h3 class="text-hacker-color1 font-bold text-lg">Categories</h3>
+          <div>
+            <% site.categories.slice(0, theme.sidebar.numlimit.categories).forEach(category => { %>
+              <a href="<%= config.url + "/" + category.path %>" class="text-hacker-color3 hover:text-white">
+                <%= category.name %> (<%= category.length %>)
+              </a>
+              <br />
+            <% }) %>
+            <% if (site.categories.length > theme.sidebar.numlimit.categories) { %>
+              <a href="/categories" class="text-hacker-color3 hover:text-white">... <%= site.categories.length - theme.sidebar.numlimit.categories %> more</a>
+            <% } %>
+          </div>
+          <hr class="w-full border-t-2 border-line-color border-dashed">
+        <% } %>
+  
+        <% if (widget === "tags") { %>
+          <!-- 标签部分 -->
+          <h3 class="text-hacker-color1 font-bold text-lg">Tags</h3>
+          <div class="flex flex-wrap justify-start items-center">
+            <% site.tags.slice(0, theme.sidebar.numlimit.tags).forEach(tag => { %>
+              <a href="<%= config.url + "/" + tag.path %>" class="text-hacker-color3 hover:bg-hacker-hover-color hover:text-white block border border-hacker-color3 hover:border-dotted rounded-sm py-0.5 px-2 mr-4 mb-2">
+                <%= tag.name %> <sub><%= tag.length %></sub>
+              </a>
+              <br />
+            <% }) %>
+            <% if (site.tags.length > theme.sidebar.numlimit.tags) { %>
+              <a href="/tags" class="text-hacker-color3 hover:text-white">... <%= site.tags.length - theme.sidebar.numlimit.tags %> more</a>
+            <% } %>
+          </div>
+          <hr class="w-full border-t-2 border-line-color border-dashed">
+        <% } %>
+  
+        <% if (widget === "links") { %>
+          <!-- 链接部分 -->
+          <h3 class="text-hacker-color1 font-bold text-lg">Links</h3>
+          <div>
+            <% theme.sidebar.links.forEach(link => { %>
+              <a href="<%= link.url %>" target="_blank" class="text-hacker-color3 hover:text-white">
+                <%= link.name %>
+              </a>
+              <br />
+            <% }) %>
+          </div>
+          <hr class="w-full border-t-2 border-line-color border-dashed">
+        <% } %>
+  
+      <% }) %>
+    </div>
+  <% } %>
+  
+  
+  
+  
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./js/search.js"></script>

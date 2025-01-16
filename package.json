@@ -1,0 +1,23 @@
+{
+  "name": "hexploit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "hacker",
+    "blog"
+  ],
+  "author": "m310ct",
+  "license": "ISC",
+  "description": "A hacker-style Hexo blog theme.",
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17"
+  }
+}

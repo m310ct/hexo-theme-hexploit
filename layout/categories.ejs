@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= theme.title %> - Categories</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <%- partial('_partial/header') %>
+</head>
+
+<body class="bg-black container mx-auto">
+    <h1 class="text-4xl text-hacker-color1 font-bold font-dos">Categories</h1>
+    <hr class="border-t-2 border-line-color border-dashed">
+    <div class="container mx-auto flex bg-black min-h-screen">
+        <div class="w-full mt-8">
+            <ul class="space-y-2">
+                <% site.categories.forEach(function(category) { %>
+                    <% if (!category.parent) { %>
+                        <!-- 父分类 -->
+                        <li>
+                            <a href="<%- url_for(category.path) %>" class="text-hacker-color3 text-xl font-bold hover:text-white hover:-translate-y-1 duration-150">
+                                <%= category.name %> <sub><%= category.length %></sub>
+                            </a>
+                        </li>
+                        
+                        <!-- 子分类 -->
+                        <% site.categories.forEach(function(subCategory) { %>
+                            <% if (subCategory.parent === category._id) { %>
+                                <li class="ml-8">
+                                    <a href="<%- url_for(subCategory.path) %>" class="text-hacker-color3 text-lg hover:text-white hover:-translate-y-1 duration-150">
+                                        <%= subCategory.name %> <sub><%= subCategory.length %></sub>
+                                    </a>
+                                </li>
+                            <% } %>
+                        <% }) %>
+                    <% } %>
+                <% }) %>
+            </ul>
+        </div>
+        <%- partial('_partial/sidebar') %>
+    </div>
+</body>
+</html>

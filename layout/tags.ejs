@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= theme.title %> - Tags</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <%- partial('_partial/header') %>
+</head>
+
+<body class="bg-black container mx-auto">
+    <h1 class="text-4xl text-hacker-color1 font-bold font-dos">Tags</h1>
+    <hr class="border-t-2 border-line-color border-dashed">
+    <div class="container mx-auto flex bg-black min-h-screen">
+        <div class="w-full mt-8">
+            <ul class="grid grid-row-4 grid-cols-4 gap-3">
+                <% site.tags.each(function(tag) { %>
+                    <li class="">
+                        <a href="<%- url_for(tag.path) %>" class="text-hacker-color3 text-xl hover:text-white hover:-translate-y-1 duration-150">
+                            <%= tag.name %> <sub><%= tag.length %></sub>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+        <%- partial('_partial/sidebar') %>
+    </div>
+</body>
+
+</html>

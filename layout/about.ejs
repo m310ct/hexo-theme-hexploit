@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= page.title %> - About</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <%- partial('_partial/header') %>
+</head>
+<body class="bg-black text-hacker-color3 container mx-auto ">
+    <h1 class="text-4xl text-hacker-color1 font-bold font-dos"><%= page.title %></h1>
+    <hr class="border-t-2 border-line-color border-dashed my-4">
+    
+
+    <div class="prose prose-invert h-screen container mx-auto flex justify-center">
+        <div>
+            <%- page.content %>
+        </div>
+    </div>
+</body>
+<%- partial('_partial/footer') %>
+</html>
