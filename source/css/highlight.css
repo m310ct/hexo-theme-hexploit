@@ -1,3 +1,8 @@
+pre {
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word; 
+}
 pre code.hljs {
     display: block;
     overflow-x: auto;
