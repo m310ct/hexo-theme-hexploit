@@ -8,4 +8,24 @@
     font-weight: normal;
     font-style: normal;
   }
-  
+
+/* Cursor styles */
+body{
+  cursor: url('../cursor/cursor.cur'), auto;
+}
+input, textarea {
+  cursor: url('/cursor/text.cur'), text;
+}
+
+a {
+  cursor: url('/cursor/link.cur'), pointer;
+}
+
+button {
+  cursor: url('/cursor/link.cur'), pointer;
+}
+
+::selection {
+  background: rgba(228, 25, 25, 0.35); /* 淡红色选中背景 */
+  color: white;
+}
